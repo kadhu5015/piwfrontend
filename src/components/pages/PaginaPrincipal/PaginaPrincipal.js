@@ -1,5 +1,5 @@
 import { Navegador } from "../../common/Navegador/Navegador";
-
+import { PaginaprincipalCSS } from "./PaginaPrincipal.css";
 function Conteudo(){
     let disciplinas = [ //isso é pra simular informações que estão no banco de dados
         {
@@ -28,14 +28,14 @@ function Conteudo(){
         </li>))
 
     return(
-        <div>
+        <div >
             {lis} 
         </div>);
 }
 
 function Cabecalho({paginaAtual}){ //aqui eu criei uma variavel chamada paginaAtual que vai receber o valor da chave "paginaAtual" pq tem o mesmo nome
     return( //não esquecer o return
-        <header>
+        <header className="fundo-azul">
             <h1>Matricula Ufc QXD</h1>
             <span>Você está na {paginaAtual}</span>
         </header>

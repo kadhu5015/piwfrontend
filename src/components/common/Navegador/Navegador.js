@@ -10,7 +10,7 @@ export function Navegador(){
     //nao entendi essa linha do let Link
     let Link = ({linkTexto}) =>(<a className="link-navegador" href="http://globo.com">{(linkTexto)}</a>) //esse é o componentezinho que o proff fez no min 11:46
     return (
-        <nav>
+        <nav className="fundo-azul">
             <Link linkTexto = "link 1 "></Link> 
             <Link linkTexto = "link 2 "></Link> 
             <Link linkTexto = "link 3 "></Link> 
