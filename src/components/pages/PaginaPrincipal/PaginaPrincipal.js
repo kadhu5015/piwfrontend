@@ -1,6 +1,7 @@
 import { Navegador } from "../../common/Navegador/Navegador";
 //alteração teste para ver o log
 //agora vamos ver o universo paralelo
+//agora outro teste
 function Conteudo(){
     let disciplinas = [ //isso é pra simular informações que estão no banco de dados
         {
