@@ -1,7 +1,7 @@
 .container{
     background-color: darkgray;
     width: 100vw;
-    height: 100vh;
+    height: 1000px;
    
 
     display: flex;
@@ -13,29 +13,70 @@
 .container .conteudo-galeria{
     background-color: black;
     width: 700px;
-    height: 400px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
+.container .conteudo-galeria .conteudo-post{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
+    margin-top: 50px;
+    margin-bottom: 50px;
 
-.card {
+}
+
+.container .conteudo-galeria .conteudo-post .card{
 
     background-color: chartreuse;
-    width: 200px;
+    width: 400px;
     height: 150px;
-
-    margin: 20px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;  
+    justify-content: space-around;  
 }
 
-.card .card-titulo{
-    font-size: 30px;
+.container .conteudo-galeria .conteudo-post .card .card-nome{
+    text-justify: center;
+    color: rgb(255, 0, 0);
 }
 
-.fundovermelho{
-    background-color: red;
+.container .conteudo-galeria .conteudo-post .card .card-mensagem{
+    text-align: center;
+    color: rgb(17, 10, 19);
+}
+
+.container .conteudo-galeria .conteudo-post .card .card-likes{
+    width: 400px;
+    margin-left: 20px;
+    text-align: left;
+    color: rgb(68, 0, 255);
+}
+
+
+
+
+.container .conteudo-galeria .conteudo-post .footer{
+    background-color: rgb(255, 255, 255);
+    width: 400px;
+
+    display: flex;
+
+    position: relative;
+}
+
+.container .conteudo-galeria .conteudo-post .footer .botaolike{
+    background-color: darkgreen;
+    width: 100px;
+    height: 50px;
+
+    position: absolute;
+    right: 0;
+    
 }
