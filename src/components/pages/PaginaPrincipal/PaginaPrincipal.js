@@ -1,41 +1,57 @@
 import { Navegador } from "../../common/Navegador/Navegador";
 //import { PaginaprincipalCSS } from "./PaginaPrincipal.css";
 import "./PaginaPrincipal.css";
+import classNames from 'classnames';
+
+function Card({nome,codigo,disponivel}){
+    // let nomeClasse = "card" //o card é uma classe q sempre vai ter
+    // if (disponivel == false){
+    //     nomeClasse = nomeClasse + " fundovermelho";
+    // }
+    let nomeClasse = classNames("card", {"fundovermelho":!disponivel,})
+    return(
+        <div className={nomeClasse}>
+            <h3 className="card-titulo">{nome}</h3>
+            <span className="card-codigo">{codigo}</span>
+        </div>
+    )
+}
+
 function Conteudo(){
     let disciplinas = [ //isso é pra simular informações que estão no banco de dados
         {
             nome: "LMS",
             codigo: "QXD123",
+            disponivel: false,
 
         }, 
         {
             nome: "piw",
             codigo: "QXD456",
+            disponivel: false,
         },
         {
             nome: "sct",
             codigo: "QXD789",
+            disponivel: false,
+        },
+        {
+            nome: "POO",
+            codigo: "8246",
+            disponivel: false,
         }
 
     ];
-    // let lis = []; //crio uma lista vazia pra armazenar os dados la de cima
-    // for(let i = 0; i < disciplinas.length; i++){ //um for que vai passar por todos os objetos dentro de disciplinas
-    //     lis.push(<li>({disciplinas[i].nome} - {disciplinas[i].codigo})</li>) //pegando todos os elementos das disciplinas e colocando dentro de lis
-    // }
-    // //no return a gente renderiza essa lista
-    let lis = disciplinas.map((disciplina)=>(
-        <li>
-            {disciplina.nome} - {disciplina.codigo}
-        </li>))
+  
+    let cards = disciplinas.map((disciplina)=>(<Card 
+                                    nome = {disciplina.nome} 
+                                    codigo = {disciplina.codigo}
+                                    disponivel = {disciplina.disponivel}></Card>))
 
     return(
         <div className="conteudo-galeria" >
-            <div className="card">
-                <h3 className="card-titulo">PIW</h3>
-                <span className="card-codigo">1234</span>
-
-            </div>
-        </div>);
+            {cards}
+        </div>)
 }
 
 function Cabecalho({paginaAtual}){ //aqui eu criei uma variavel chamada paginaAtual que vai receber o valor da chave "paginaAtual" pq tem o mesmo nome
