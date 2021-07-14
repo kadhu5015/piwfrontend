@@ -1,0 +1,41 @@
+.container{
+    background-color: darkgray;
+    width: 100vw;
+    height: 100vh;
+   
+
+    display: flex;
+    flex-direction: column;    
+    align-items: center;
+    
+}
+
+.container .conteudo-galeria{
+    background-color: black;
+    width: 700px;
+    height: 400px;
+}
+
+
+
+.card {
+
+    background-color: chartreuse;
+    width: 200px;
+    height: 150px;
+
+    margin: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;  
+}
+
+.card .card-titulo{
+    font-size: 30px;
+}
+
+.fundovermelho{
+    background-color: red;
+}
