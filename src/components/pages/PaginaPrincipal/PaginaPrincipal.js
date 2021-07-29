@@ -1,18 +1,18 @@
 import { Navegador } from "../../common/Navegador/Navegador";
-//import { PaginaprincipalCSS } from "./PaginaPrincipal.css";
 import "./PaginaPrincipal.css";
 import classNames from 'classnames';
+import history from "../../../history";
 
-function Card({nome,codigo,disponivel}){
-    // let nomeClasse = "card" //o card é uma classe q sempre vai ter
-    // if (disponivel == false){
-    //     nomeClasse = nomeClasse + " fundovermelho";
-    // }
-    let nomeClasse = classNames("card", {"fundovermelho":!disponivel,})
+function Card({disciplina}){
+    function foiClicado(){
+        console.log("Clicou kerelhom");
+        history.push("/disciplinas/"+disciplina.id);
+    }
+    let nomeClasse = classNames("card", {"fundovermelho":!disciplina.disponivel,})
     return(
-        <div className={nomeClasse}>
-            <h3 className="card-titulo">{nome}</h3>
-            <span className="card-codigo">{codigo}</span>
+        <div className={nomeClasse} onClick={foiClicado}>
+            <h3 className="card-titulo">{disciplina.nome}</h3>
+            <span className="card-codigo">{disciplina.codigo}</span>
         </div>
     )
 }
@@ -20,22 +20,26 @@ function Card({nome,codigo,disponivel}){
 function Conteudo(){
     let disciplinas = [ //isso é pra simular informações que estão no banco de dados
         {
+            id: "123",
             nome: "LMS",
             codigo: "QXD123",
             disponivel: false,
 
         }, 
         {
+            id: "456",
             nome: "piw",
             codigo: "QXD456",
             disponivel: false,
         },
         {
+            id: "789",
             nome: "sct",
             codigo: "QXD789",
             disponivel: false,
         },
         {
+            id: "987",
             nome: "POO",
             codigo: "8246",
             disponivel: false,
@@ -44,9 +48,7 @@ function Conteudo(){
     ];
   
     let cards = disciplinas.map((disciplina)=>(<Card 
-                                    nome = {disciplina.nome} 
-                                    codigo = {disciplina.codigo}
-                                    disponivel = {disciplina.disponivel}></Card>))
+                                   disciplina={disciplina}></Card>))
 
     return(
         <div className="conteudo-galeria" >

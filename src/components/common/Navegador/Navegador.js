@@ -1,17 +1,24 @@
 import "./Navegador.css";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 export function Navegador(){
+
+    let id = 15;
     return (
         <nav className="navegador">
 
-            <Link className="link-navegador" to="/">
+            <NavLink exact className="link-navegador" to="/">
                 Pagina principal
-            </Link>
+            </NavLink>
 
-            <Link className="link-navegador" to="/matriculas">
+            <NavLink className="link-navegador" to="/matriculas">
                 Listar matriculas
-            </Link>           
+            </NavLink>           
+
+            <NavLink exact className="link-navegador" to={"/matriculas/"+ id}>
+                matricula especifica
+            </NavLink> 
+
         </nav>
     )
 }

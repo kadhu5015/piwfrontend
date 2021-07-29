@@ -11,3 +11,7 @@
 .navegador .link-navegador:hover{
     background-color: cyan;
 }
+
+.navegador .link-navegador.active{
+    background-color: rgb(9, 65, 65);
+}
