@@ -1,7 +1,26 @@
 import { Navegador } from "../../common/Navegador/Navegador";
 import "./PaginaFeed.css";
+import {useState} from 'react';
 
-
+function Botao(){
+    const [count, setCount] = useState(0);
+    const [clicado, setClicado] = useState(false);
+    
+    const clicouBotao = () => {
+        setCount(count + 1);
+        setClicado(true);
+    }
+    let estilo = {};
+    if (clicado==true){
+        estilo["backgroundColor"] = "green";
+    }else {
+        estilo["backgroundColor"] = "blue";
+    }
+    
+    return <button onClick={clicouBotao} style={estilo}>
+        Eu fui pressionado {count} vezes
+    </button>
+}
 function Post({nome, mensagem, likes}){
     return(
         <div className="conteudo-post">
@@ -14,6 +33,21 @@ function Post({nome, mensagem, likes}){
                 <button className="botaolike">Like</button>
             </div>
         </div>
+    )
+}
+function Mensagem(){
+    return(
+            <div className="comentario">
+                <form className="form"> 
+                    <div className="objetos">
+                        <textarea id="msg"></textarea>
+                    </div>
+                    <div className="objetos">
+                        <button type="submit">Add comentário</button>
+                    </div>
+                </form>
+            </div> 
+
     )
 }
 
@@ -53,6 +87,8 @@ export function PaginaFeed(){
     return (<div className="container">
         <Navegador></Navegador>
         <LinhadoTempo></LinhadoTempo>
-        
+        <Mensagem></Mensagem>
+        <Botao></Botao>
+
     </div>); 
 }

@@ -9,6 +9,13 @@
     position: relative;
     
 }
+
+.navegador .linhadotempo.active{
+    background-color: black;
+}
+.navegador .postar.active{
+    background-color: black;
+}
 .navegador .imagem{
     width: 100px;
     height: 100px;
