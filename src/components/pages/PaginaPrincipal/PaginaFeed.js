@@ -1,26 +1,30 @@
 import { Navegador } from "../../common/Navegador/Navegador";
 import "./PaginaFeed.css";
-import {useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
+import { listarDisciplinas } from "../../../api/disciplinasAPI";
+import { AuthContext } from "../../../App";
 
-function Botao(){
-    const [count, setCount] = useState(0);
-    const [clicado, setClicado] = useState(false);
+//function Botao(){
+
+  //  const [count, setCount] = useState(0);
+    //const [clicado, setClicado] = useState(false);
     
-    const clicouBotao = () => {
-        setCount(count + 1);
-        setClicado(true);
-    }
-    let estilo = {};
-    if (clicado==true){
-        estilo["backgroundColor"] = "green";
-    }else {
-        estilo["backgroundColor"] = "blue";
-    }
+   // const clicouBotao = () => {
+     //   setCount(count + 1);
+       // setClicado(true);
+    //}
+    //let estilo = {};
+    //if (clicado==true){
+      //  estilo["backgroundColor"] = "green";
+    //}else {
+     //   estilo["backgroundColor"] = "blue";
+   // }
     
-    return <button onClick={clicouBotao} style={estilo}>
-        Eu fui pressionado {count} vezes
-    </button>
-}
+   // return <button onClick={clicouBotao} style={estilo}>
+     //   Eu fui pressionado {count} vezes
+    //</button>
+//}
+
 function Post({nome, mensagem, likes}){
     return(
         <div className="conteudo-post">
@@ -51,44 +55,44 @@ function Mensagem(){
     )
 }
 
-function LinhadoTempo(){
-    let posts = [ 
-        {
-            id: "1",
-            nome: "Fulano",
-            mensagem: "Não aguento mais estudar PIW",
-            likes: "38",
-        }, 
-        {
-            nome: "Cicrano",
-            mensagem: "Mal vejo a hora de terminar essa disciplina",
-            likes: "2",
-        },
-        {
-            nome: "Beltrano",
-            mensagem: "Socorro jesus já é o 21345éssimo erro no meu código",
-            likes: "3",
-        },
-    ];
-  
-    let allposts = posts.map((post)=>(
-        <Post
-        nome = {post.nome} 
-        mensagem = {post.mensagem}
-        likes = {post.likes}></Post>))
+function LinhadoTempo({disciplinas}){
+    
+    let allposts = disciplinas.map(
+            (disciplina)=>
+                (
+                <Post
+                    nome = {disciplina.texto} 
+                    mensagem = {disciplina.likes}
+                ></Post>
+                )
+    )
 
     return(
         <div className="conteudo-galeria" >
             {allposts}   
+            <Mensagem></Mensagem>
         </div>)
 }
 
 export function PaginaFeed(){
+    const {auth} = useContext(AuthContext);
+    const [disciplinas, setDisciplinas] = useState([]);
+
+    useEffect(()=>{
+        listarDisciplinas(auth.token)
+        .then(
+            (response)=>{
+                setDisciplinas(response.data);
+            }
+        )
+        .catch(
+            (error =>{console.log(error);})
+        )
+    },[])
+    
     return (<div className="container">
         <Navegador></Navegador>
-        <LinhadoTempo></LinhadoTempo>
-        <Mensagem></Mensagem>
-        <Botao></Botao>
-
+        <LinhadoTempo disciplinas={disciplinas}></LinhadoTempo>
+        
     </div>); 
 }

@@ -1,23 +1,33 @@
 import { Navegador } from "../../common/Navegador/Navegador"
-import history from '../../../history';
-
-function foiClicado(){
-    history.push("/");
-}
+//import history from '../../../history';
+import { inserirDisciplina } from "../../../api/disciplinasAPI";
+import { AuthContext } from "../../../App";
+import {useContext, useState} from 'react';
+import {useForm} from "react-hook-form";
 
 function FormPostar(){
+    
+    const {auth} = useContext(AuthContext);
+    console.log("antes");
+    const {register, handleSubmit} = useForm();
+    console.log("depois");
+    const submeter = (post)=>{
+        console.log("post:");
+        console.log(post);
+        inserirDisciplina(post, auth.token).then((response)=>{
+            console.log(response);
+            
+        })
+        .catch((error)=>{console.log(error);})
+    
+    }; //eh aqui que faço o babado do axios
+
     return(
-        <div className="containerformulario">
-            <form className="form"> 
-                <div>
-                    <label>Mensagem:</label>
-                    <textarea id="msg"></textarea>
-                </div>
-                <div >
-                    <button onClick={foiClicado} type="submit">postar</button>
-                </div>
-            </form>
-        </div>
+        <form onSubmit={handleSubmit(submeter)}>
+            Texto:<input type="text" name="texto" {...register("texto")}></input> <br></br>
+            Likes: <input type="text" name="matricula" {...register("likes")}></input><br></br>
+            <button>Cadastrar</button>
+        </form>
     )
 }
 

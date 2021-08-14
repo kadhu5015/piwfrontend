@@ -2,17 +2,13 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import history from "../../../history";
 import { Navegador } from "../../common/Navegador/Navegador";
-
+import {cadastrar} from "../../../api/auth"
 
 function FormularioCadastro(){
     const {register, handleSubmit} = useForm();
     const submeter = (aluno)=>{
 
-        axios({
-            method: "POST",
-            url: "http://localhost:8393/api/usuarios",
-            data: aluno,
-        }).then((response)=>{
+        cadastrar(aluno).then((response)=>{
             console.log(response);
             history.push("/login");
         })
@@ -24,7 +20,7 @@ function FormularioCadastro(){
         <form onSubmit={handleSubmit(submeter)}>
             Nome:<input type="text" name="nome" {...register("nome")}></input> <br></br>
             Matricula: <input type="text" name="matricula" {...register("matricula")}></input><br></br>
-            Senha: <input type="password" name="senha"{...register("senha")}></input><br></br>
+            Senha: <input type="password" name="senha"{...register("senha")}></input><br></br><br></br>
             <button>Cadastrar</button>
         </form>
     )
@@ -32,9 +28,9 @@ function FormularioCadastro(){
 
 export function PaginaCadastro(){
     return(
-        <div>
+        <div className="container">
             <Navegador></Navegador>
-            <h1>cadastro kerelhom</h1>
+            <h1>Cadastrar:</h1>
             <FormularioCadastro></FormularioCadastro>
 
         </div>

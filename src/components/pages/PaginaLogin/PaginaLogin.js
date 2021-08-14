@@ -5,6 +5,7 @@ import {login} from "../../../api/auth";
 import { useContext } from "react";
 import { AuthContext } from "../../../App";
 import history from "../../../history";
+import "./PaginaLogin.css";
 
 export function FormularioLogin(){
 
@@ -22,7 +23,7 @@ export function FormularioLogin(){
     return(
         <form onSubmit={handleSubmit(submeter)}>
             Matricula: <input type="text" name="matricula"{...register("matricula")}></input><br/>
-            Senha: <input type="password" name="senha"{...register("senha")}></input>
+            Senha: <input type="password" name="senha"{...register("senha")}></input><br></br><br></br>
             <button>Logar</button>
         </form>
     )
@@ -30,9 +31,9 @@ export function FormularioLogin(){
 
 export function Paginalogin(){
     return (
-        <div>
+        <div className="container">
             <Navegador></Navegador>
-            <h1>login kerelhom</h1>
+            <h1>Fazer login:</h1>
             <FormularioLogin></FormularioLogin>
 
         </div>

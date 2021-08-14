@@ -1,17 +1,27 @@
 import { Navegador } from "../../common/Navegador/Navegador";
 import { useForm } from 'react-hook-form';
-import { useState } from "react";
+import { useState, useContext } from "react";
+import {inserirDisciplina} from '../../../api/disciplinasAPI';
+import { AuthContext } from "../../../App";
+import history from '../../../history';
 
 function FormularioMatricula({onSubmeter}){
+    const {auth} = useContext(AuthContext);
     const {register, handleSubmit} = useForm();
-    const submeter = (matricula) => {onSubmeter(matricula);}; //pode ter qualquer nome, nao so "submeter"
+    const submeter = (auth, matricula) => {
+        inserirDisciplina(matricula).then((response)=>{
+            console.log(response);
+            history.push("/");
+        })
+        .catch((error)=>{console.log(error);})
+    }; //pode ter qualquer nome, nao so "submeter"
     return (
        
         <form onSubmit={handleSubmit(submeter)}>
 
             <label>
                 Nome: 
-                <input name="nome" type="text" {...register("nome")}/>
+                <input name="texto" type="text" {...register("texto")}/>
             </label>
 
             <label>
